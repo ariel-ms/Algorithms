@@ -2,6 +2,16 @@ import edu.princeton.cs.algs4.WeightedQuickUnionUF;
     
 public class Percolation {
     
+	/**
+	Algorithms, Part 1
+	Programming Assignment: Percolation
+	This class represents a percolation model.
+	The model uses an n-by-n grid of sites, where each site is eaither open or closed.
+	A full site is defined to be a site that can be connected to the top row by a chain of
+	open sites.
+	The model percolates if there is a full site in the bottom row.
+	**/
+
     // private int gridSize;
     private int len;
     private int openSites;
