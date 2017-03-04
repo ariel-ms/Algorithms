@@ -3,6 +3,14 @@ import edu.princeton.cs.algs4.StdStats;
 // import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
+/**
+Algorithms, Part 1
+Programming Assignment: Percolation
+This class performs computational experiments using the Percolation class.
+*/
+
+
+// Perform trials experiments on an n-by-n grid
 public class PercolationStats {
     // private Percolation grid;
     // private double[] data;
@@ -38,20 +46,24 @@ public class PercolationStats {
         stddev = StdStats.stddev(data);
     }
     
+    // @return mean of percolation threshold
     public double mean() {
         return mean;
     }
-    
+
+    // @return standard deviation of percolation threshold
     public double stddev() {
         if (t == 1)
             return Double.NaN;
         return stddev;
     }
     
+    // @return low endpoint of 95% confidence interval
     public double confidenceLo() {
         return (mean - ((1.96*stddev)/Math.sqrt(t)));
     }
     
+    // @return high endpoint of 95% confidence interval
     public double confidenceHi() {
         return (mean + ((1.96*stddev)/Math.sqrt(t)));
     }
