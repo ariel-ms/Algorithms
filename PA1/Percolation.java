@@ -8,8 +8,7 @@ public class Percolation {
 	This class represents a percolation model.
 	The model uses an n-by-n grid of sites, where each site is eaither open or closed.
 	A full site is defined to be a site that can be connected to the top row by a chain of
-	open sites.
-	The model percolates if there is a full site in the bottom row.
+	open sites.The model percolates if there is a full site in the bottom row.
 	**/
 
     // private int gridSize;
@@ -19,6 +18,7 @@ public class Percolation {
     private WeightedQuickUnionUF sets;
     private WeightedQuickUnionUF lset;
     
+    // create n-by-n grid with all sites blocked
     public Percolation(int n) {
         if (n <= 0) {
             throw new IllegalArgumentException();
@@ -46,6 +46,7 @@ public class Percolation {
         } **/
     }
     
+    // open a site if it is not already open
     public void open(int row, int col) {
         checkException(row, col);
         int p = toOneD(row, col);
@@ -94,27 +95,16 @@ public class Percolation {
                 } 
             }
                 
-            /** if (grid[row][col + 1] == 1) {
-                q = toOneD(row, col + 1);
-                sets.union(p, q);
-            } else if (grid[row][col - 1] == 1) {
-                q = toOneD(row, col - 1);
-                sets.union(p, q);
-            } else if (grid[row - 1][col] == 1) {
-                q = toOneD(row - 1, col);
-                sets.union(p, q);
-            } else if (grid[row + 1][col] == 1) {
-                q = toOneD(row + 1, col);
-                sets.union(p, q);
-            } **/
         }
     }
     
+    // @return the number of the element (row, col) in WQUF
     private int toOneD(int row, int col) {
         int oneD = ((row - 1) * len) + (col - 1); 
         return oneD;
     }
     
+    // @return true if site is open
     public boolean isOpen(int row, int col) {
         checkException(row, col);
         row -= 1;
@@ -124,6 +114,7 @@ public class Percolation {
         return false;
     }
     
+    // @return true if site is full
     public boolean isFull(int row, int col) {
         checkException(row, col);
         if (grid[row - 1][col - 1] == 0) {
@@ -139,16 +130,19 @@ public class Percolation {
         return sets.find(p);
     } **/
     
+    // @return number of open sites
     public int numberOfOpenSites() {
         return openSites;
     }
     
+    // @return true if percolates
     public boolean percolates() {
         if (len == 1 && grid[0][0] == 0)
             return false;
         return sets.connected((len*len), (len*len) + 1);
     }
     
+    // chechks wether the row and col are valid ints
     private void checkException(int row, int col) {
         if ((row < 1 || row > len) || (col < 1 || col > len)) {
             throw new IndexOutOfBoundsException();
