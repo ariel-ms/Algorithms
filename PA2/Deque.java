@@ -91,7 +91,7 @@ public class Deque<Item> implements Iterable<Item> {
         Item data = head.next.data;
         head.next.next.prev = head;
         head.next = head.next.next;
-        
+        size -= 1;
         return data;
     }
     
@@ -104,7 +104,7 @@ public class Deque<Item> implements Iterable<Item> {
         Item data = tail.prev.data;
         tail.prev.prev.next = tail;
         tail.prev = tail.prev.prev;
-
+        size -= 1;
         return data;
     }
     
