@@ -1,5 +1,6 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+// import java.util.Scanner;
 
 public class Deque<Item> implements Iterable<Item> {
     /**
@@ -140,5 +141,36 @@ public class Deque<Item> implements Iterable<Item> {
     
     // main for testing
     public static void main(String[] args) {
+        // Test Deque using addLast
+        // Input: 5,7,3,2,1
+        // Output:
+        // Add last: 5,7,3,2,1
+        // Add firt: 1,2,3,7,5
+        
+        // Scanner sc = new Scanner(System.in);
+        int[] input = {5, 7, 3, 2, 1};
+        Deque<Integer> dt = new Deque<Integer>();
+        // Is empty: true
+        System.out.println("Is empty: " + dt.isEmpty());
+        for (int n : input) {
+            // int n = sc.nextInt();
+            dt.addLast(n);
+        }
+        // remove first: 7,3,2,1
+        dt.removeFirst();
+        // remove last: 7,3,2
+        dt.removeLast();
+        // size: 3
+        System.out.println("size: "+dt.size());
+        // add last 10: 7,3,2,10
+        dt.addLast(10);
+        // add first 0: 0,7,3,2,10
+        dt.addFirst(0);
+        // size: 5
+        System.out.println("size: "+dt.size());
+        for (int element : dt) {
+            System.out.print(element + " ");
+        }
+        // sc.close();
     }
 }
