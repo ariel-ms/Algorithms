@@ -115,13 +115,26 @@ public class Deque<Item> implements Iterable<Item> {
     
     //  class the implements the Iterator interface
     private class ListIterator implements Iterator<Item> {
+        // current node points to the first element in the list
+        private Node<Item> current = head.next;
+
+        // @return false if no more elements in list 
         public boolean hasNext() {
-            return false;
+            return !(current == tail);
         }
+
+        // throw exception in client calls this operation
         public void remove() {
+            throw new UnsupportedOperationException();
         }
+
+        // @return the item "data" of current node
         public Item next() {
-            return null;
+            if (!hasNext())
+                throw new NoSuchElementException();
+            Item item = current.data;
+            current = current.next;
+            return item;
         }
     }
     
