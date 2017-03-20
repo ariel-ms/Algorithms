@@ -43,6 +43,7 @@ public class Deque<Item> implements Iterable<Item> {
     
     // add the item to the front
     public void addFirst(Item item) {
+        if (checkNull(item)) throw new NullPointerException();
         Node<Item> node = new Node<Item>(item);
         if (size == 0) {
             // set the pointers of the new node
@@ -65,6 +66,7 @@ public class Deque<Item> implements Iterable<Item> {
     
     // add the item to the end
     public void addLast(Item item) {
+        if (checkNull(item)) throw new NullPointerException();
         Node<Item> node = new Node<Item>(item);
         // set new node next and prev pointers
         node.next = tail;
@@ -83,6 +85,11 @@ public class Deque<Item> implements Iterable<Item> {
         size += 1;
     }
     
+    // @return true if item is equal to null
+    private boolean checkNull(Item item) {
+        return item == null;
+    }
+
     // remove and return the item from the front
     public Item removeFirst() {
         if (size == 0) {
