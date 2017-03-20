@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import edu.princeton.cs.algs4.StdRandom;
 
 public class RandomizedQueue<Item> implements Iterable<Item> {
     private Item[] array;
@@ -41,7 +42,23 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     public Item sample() {
         return null;
     }
-    
+
+    // Knuth shuffle - generates uniformly random permutaion
+    private void knuthShuffle() {
+        int n = array.length;
+        for (int i = 0; i < n; i++) {
+            int rand = StdRandom.uniform(i + 1);
+            exch(i, rand);
+        }
+    }
+
+    // interchanges the keys of the provided indexes
+    private void exch(int i, int j) {
+        Item temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
     // return an idependent iterator over items in random order
     public Iterator<Item> iterator() {
         return new ListIterator();
