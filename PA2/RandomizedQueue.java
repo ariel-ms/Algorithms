@@ -57,7 +57,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     // Knuth shuffle - generates uniformly random permutaion
     private void knuthShuffle() {
-        int n = array.length;
+        int n = size;
         for (int i = 0; i < n; i++) {
             int rand = StdRandom.uniform(i + 1);
             exch(i, rand);
@@ -73,6 +73,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     // return an idependent iterator over items in random order
     public Iterator<Item> iterator() {
+        knuthShuffle();
         return new ListIterator();
     }
     
