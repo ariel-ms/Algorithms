@@ -80,6 +80,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     // class that implements the Iterator interface
     private class ListIterator implements Iterator<Item> {
         private int n = size;
+        private Item[] copy = array.clone();
         public boolean hasNext() {
             return n > 0;
         }
@@ -90,7 +91,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
         public Item next() {
             if (!hasNext()) throw new NoSuchElementException();
-            return array[--n];
+            return copy[--n];
         }
     }
     

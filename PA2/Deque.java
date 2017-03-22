@@ -10,7 +10,7 @@ public class Deque<Item> implements Iterable<Item> {
     private Node<Item> head;
     private Node<Item> tail;
     
-    class Node<E> {
+    private class Node<E> {
         Node<E> next;
         Node<E> prev;
         E data;
