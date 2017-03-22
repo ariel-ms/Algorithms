@@ -38,11 +38,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     // remove and return a random item
     public Item dequeue() {
         if (size == 0) throw new NoSuchElementException();
-        knuthShuffle();
-        // int index = StdRandom.uniform(size + 1);
-        Item item = array[--size];
-        array[size] = null;
-        // size--;
+        // knuthShuffle();
+        int index = StdRandom.uniform(size);
+        Item item = array[index];
+        array[index] = array[size - 1];
+        array[--size] = null;
         if (size > 0 && size == array.length / 4) resize(array.length / 2);
         return item;
     }
@@ -50,9 +50,9 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     // return (but do not remove) a random item
     public Item sample() {
         if (size == 0) throw new NoSuchElementException();
-        knuthShuffle();
-        // int index = StdRandom.uniform(size + 1);
-        return array[size - 1];
+        // knuthShuffle();
+        int index = StdRandom.uniform(size);
+        return array[index];
     }
 
     // Knuth shuffle - generates uniformly random permutaion
